@@ -1,4 +1,7 @@
 import { Environment, MeshPortalMaterial, RoundedBox, useTexture, Text } from "@react-three/drei";
+import { act, useFrame } from "@react-three/fiber";
+import { easing } from "maath";
+import { useRef } from "react";
 import * as THREE from "three";
 
 export const MonsterStage = ({ 
@@ -6,9 +9,19 @@ export const MonsterStage = ({
   texture,
   color,
   monsterName,
+
+  active,
+  setActive,
+
   ...props
 }) => {
-  const map = useTexture(texture)
+  const map = useTexture(texture);
+  const portalMaterial = useRef();
+
+  useFrame((_state, delta) => {
+    const worldOpen = active === monsterName;
+    easing.damp(portalMaterial.current, 'blend',  worldOpen ? 1 : 0, 0.2, delta)
+  })
 
   return (
     <group {...props}>
@@ -21,8 +34,11 @@ export const MonsterStage = ({
         {monsterName}
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
-      <RoundedBox args={[2, 3, 0.1]}>
-        <MeshPortalMaterial side={THREE.DoubleSide}>
+      <RoundedBox onDoubleClick={() => setActive(active === monsterName ? null : monsterName)} args={[2, 3, 0.1]}>
+        <MeshPortalMaterial 
+          ref={portalMaterial}
+          side={THREE.DoubleSide} 
+        >
           <ambientLight intensity={0.5} />
           <Environment preset="sunset" />
 

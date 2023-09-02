@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Environment, OrbitControls } from "@react-three/drei";
 
 import { Fish } from './Fish';
@@ -6,6 +7,7 @@ import { MonsterStage } from './MonsterStage';
 import { DragonEvolved } from './Dragon_Evolved';
 
 export const Experience = () => {
+  const [active, setActive] = useState(null);
   return (
     <>
       <OrbitControls />
@@ -17,6 +19,9 @@ export const Experience = () => {
         monsterName={'Fish'}
         color={'#38adcf'}
         texture={'textures/anime_art_style_a_water_based_pokemon_like_environ.jpg'}
+
+        active={active}
+        setActive={setActive}
       >
         <Fish scale={0.6} position-y={-1} />
       </MonsterStage>
@@ -27,6 +32,9 @@ export const Experience = () => {
         monsterName={'Dragon'}
         color={'#df8d52'}
         rotation-y={Math.PI / 8}
+
+        active={active}
+        setActive={setActive}
       >
         <DragonEvolved scale={0.5} position-y={-1} />
       </MonsterStage>
@@ -37,6 +45,9 @@ export const Experience = () => {
         texture={'textures/anime_art_style_cactus_forest.jpg'}
         position-x={2.5} 
         rotation-y={-Math.PI / 8}
+        
+        active={active}
+        setActive={setActive}
       >
         <Cactoro scale={0.45} position-y={-1} />
       </MonsterStage>
