@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import * as THREE from "three";
 
-import { CameraControls, Environment } from "@react-three/drei";
+import { CameraControls, Environment, useCursor } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
 import { Fish } from './Fish';
@@ -13,6 +13,7 @@ import { DragonEvolved } from './Dragon_Evolved';
 export const Experience = () => {
   const [active, setActive] = useState(null);
   const [hovered, setHovered] = useState(null);
+  useCursor(hovered);
 
   const controlsRef  = useRef();
 
