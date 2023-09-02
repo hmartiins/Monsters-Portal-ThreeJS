@@ -1,11 +1,26 @@
-import { Environment, MeshPortalMaterial, RoundedBox, useTexture } from "@react-three/drei";
+import { Environment, MeshPortalMaterial, RoundedBox, useTexture, Text } from "@react-three/drei";
 import * as THREE from "three";
 
-export const MonsterStage = ({ children, texture, ...props }) => {
+export const MonsterStage = ({ 
+  children, 
+  texture,
+  color,
+  monsterName,
+  ...props
+}) => {
   const map = useTexture(texture)
 
   return (
     <group {...props}>
+      <Text 
+        font="fonts/Caprasimo-Regular.ttf" 
+        fontSize={0.4} 
+        position={[0, -1.3, 0.051]} 
+        anchorY={'bottom'}
+      >
+        {monsterName}
+        <meshBasicMaterial color={color} toneMapped={false} />
+      </Text>
       <RoundedBox args={[2, 3, 0.1]}>
         <MeshPortalMaterial side={THREE.DoubleSide}>
           <ambientLight intensity={0.5} />
