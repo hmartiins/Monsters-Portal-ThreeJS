@@ -1,10 +1,9 @@
-# r3f-vite-starter
-A boilerplate to build R3F projects
+# 🌀 Monsters Portal ThreeJS 🌀
 
-```
-yarn
-yarn dev
-```
+Application where it simulates the portal to three different dimensions with three different monsters and fully animated!
 
+The purpose of this repository was to improve my skills with ThreeJS and the React 3d ecosystem.
 
-![image](https://user-images.githubusercontent.com/6551176/221732091-23ee52cb-4150-42fa-b998-43628d7a6b0d.png)
+Example:
+
+ ![Aplication Example](https://github.com/hmartiins/Monsters-Portal-ThreeJS/assets/51277667/edbe3d0d-a367-4928-b81f-f6fc271479b0)
