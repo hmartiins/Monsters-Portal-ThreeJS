@@ -1,5 +1,9 @@
-import { useState } from "react";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { useEffect, useState, useRef } from "react";
+
+import * as THREE from "three";
+
+import { CameraControls, Environment } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 
 import { Fish } from './Fish';
 import { Cactoro } from './Cactoro';
@@ -8,9 +12,43 @@ import { DragonEvolved } from './Dragon_Evolved';
 
 export const Experience = () => {
   const [active, setActive] = useState(null);
+  const controlsRef  = useRef();
+
+  const scene = useThree((state) => state.scene);
+
+  useEffect(() => {
+    if(active) {
+      const targetPosition = new THREE.Vector3();
+      scene.getObjectByName(active).getWorldPosition(targetPosition);
+      controlsRef.current.setLookAt(
+        0,
+        0,
+        5,
+        targetPosition.x,
+        targetPosition.y,
+        targetPosition.z,
+        true
+      );
+    } else {
+      controlsRef.current.setLookAt(
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        true
+      );
+    }
+  }, [active])
+
   return (
     <>
-      <OrbitControls />
+      <CameraControls 
+        ref={controlsRef} 
+        maxPolarAngle={Math.PI / 2} 
+        minPolarAngle={Math.PI / 6} 
+      />
 
       <ambientLight intensity={0.5} />
       <Environment preset="sunset" />

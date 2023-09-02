@@ -1,5 +1,5 @@
 import { Environment, MeshPortalMaterial, RoundedBox, useTexture, Text } from "@react-three/drei";
-import { act, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useRef } from "react";
 import * as THREE from "three";
@@ -34,7 +34,11 @@ export const MonsterStage = ({
         {monsterName}
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
-      <RoundedBox onDoubleClick={() => setActive(active === monsterName ? null : monsterName)} args={[2, 3, 0.1]}>
+      <RoundedBox 
+        name={monsterName} 
+        onDoubleClick={() => setActive(active === monsterName ? null : monsterName)} 
+        args={[2, 3, 0.1]}
+      >
         <MeshPortalMaterial 
           ref={portalMaterial}
           side={THREE.DoubleSide} 
