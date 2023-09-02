@@ -13,6 +13,9 @@ export const MonsterStage = ({
   active,
   setActive,
 
+  hovered,
+  setHovered,
+
   ...props
 }) => {
   const map = useTexture(texture);
@@ -36,7 +39,9 @@ export const MonsterStage = ({
       </Text>
       <RoundedBox 
         name={monsterName} 
-        onDoubleClick={() => setActive(active === monsterName ? null : monsterName)} 
+        onDoubleClick={() => setActive(active === monsterName ? null : monsterName)}
+        onPointerEnter={() => setHovered(monsterName)}
+        onPointerLeave={() => setHovered(null)}
         args={[2, 3, 0.1]}
       >
         <MeshPortalMaterial 

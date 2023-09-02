@@ -12,6 +12,8 @@ import { DragonEvolved } from './Dragon_Evolved';
 
 export const Experience = () => {
   const [active, setActive] = useState(null);
+  const [hovered, setHovered] = useState(null);
+
   const controlsRef  = useRef();
 
   const scene = useThree((state) => state.scene);
@@ -60,8 +62,11 @@ export const Experience = () => {
 
         active={active}
         setActive={setActive}
+
+        hovered={hovered}
+        setHovered={setHovered}
       >
-        <Fish scale={0.6} position-y={-1} />
+        <Fish scale={0.6} position-y={-1} hovered={hovered === 'Fish'} />
       </MonsterStage>
 
       <MonsterStage 
@@ -73,8 +78,11 @@ export const Experience = () => {
 
         active={active}
         setActive={setActive}
+
+        hovered={hovered}
+        setHovered={setHovered}
       >
-        <DragonEvolved scale={0.5} position-y={-1} />
+        <DragonEvolved scale={0.5} position-y={-1} hovered={hovered === 'Dragon'} />
       </MonsterStage>
 
       <MonsterStage 
@@ -86,8 +94,11 @@ export const Experience = () => {
         
         active={active}
         setActive={setActive}
+
+        hovered={hovered}
+        setHovered={setHovered}
       >
-        <Cactoro scale={0.45} position-y={-1} />
+        <Cactoro scale={0.45} position-y={-1} hovered={hovered === 'Cactoro'} />
       </MonsterStage>
     </>
   );
